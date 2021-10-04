@@ -9,7 +9,7 @@ CITL IMR Fork
 Modifications from upstream:
 
 - Made the draggable handle for tasks much larger in the mobile view
-- 
+- Made task footer use a big ol' progress bar
 
 
 **This software is in maintenance mode**.

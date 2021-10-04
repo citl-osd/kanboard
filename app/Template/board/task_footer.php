@@ -76,6 +76,7 @@
             </span>
         <?php endif ?>
     </div>
+
     <div class="task-board-icons-row">
 
         <?php if ($task['recurrence_status'] == \Kanboard\Model\TaskModel::RECURRING_STATUS_PENDING): ?>
@@ -93,11 +94,11 @@
         <?php if (! empty($task['nb_external_links'])): ?>
             <?= $this->app->tooltipLink('<i class="fa fa-external-link fa-fw"></i>'.$task['nb_external_links'], $this->url->href('BoardTooltipController', 'externallinks', array('task_id' => $task['id'], 'project_id' => $task['project_id']))) ?>
         <?php endif ?>
-
+<!--
         <?php if (! empty($task['nb_subtasks'])): ?>
             <?= $this->app->tooltipLink('<i class="fa fa-bars fa-fw"></i>'.round($task['nb_completed_subtasks'] / $task['nb_subtasks'] * 100, 0).'%', $this->url->href('BoardTooltipController', 'subtasks', array('task_id' => $task['id'], 'project_id' => $task['project_id']))) ?>
         <?php endif ?>
-
+-->
         <?php if (! empty($task['nb_files'])): ?>
             <?= $this->app->tooltipLink('<i class="fa fa-paperclip fa-fw"></i>'.$task['nb_files'], $this->url->href('BoardTooltipController', 'attachments', array('task_id' => $task['id'], 'project_id' => $task['project_id']))) ?>
         <?php endif ?>
@@ -136,5 +137,22 @@
         <?= $this->hook->render('template:board:task:icons', array('task' => $task)) ?>
     </div>
 </div>
+
+    <?php if (! empty($task['nb_subtasks'])):
+    // prominent progress bar
+    ?>
+    <div style="width: 100%; text-align: center;">
+    <style>
+    progress#progress<?= $task["id"] ?>::-moz-progress-bar { background-color:<?=$task['color_id'] ?> ; }
+        progress#progress<?=$task["id"] ?>::-webkit-progress-value { background-color: <?=$task['color_id']?>; }
+        progress#progresss<?=$task["id"] ?> { color: <?=$task['color_id'] ?>; }
+    </style>
+            <?= $this->app->tooltipLink('<progress id="progress' . $task["id"] . '" style="display: inline-block; width:85%;" max="100" value="' . round($task['nb_completed_subtasks'] / $task['nb_subtasks'] * 100, 0) . '"></progress><label for="progress'.$task["id"].'" style="display: inline-block; width: 10%">' . round($task['nb_completed_subtasks'] / $task['nb_subtasks'] * 100, 0) . '%</label>', $this->url->href('BoardTooltipController', 'subtasks', array('task_id' => $task['id'], 'project_id' => $task['project_id']))) ?>
+    </div>
+    <?php endif ?>
+
+
+
+
 
 <?= $this->hook->render('template:board:task:footer', array('task' => $task)) ?>
