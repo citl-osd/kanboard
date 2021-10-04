@@ -3,6 +3,15 @@ Kanboard
 
 Kanboard is project management software that focuses on the Kanban methodology.
 
+CITL IMR Fork
+-------------
+
+Modifications from upstream:
+
+- Made the draggable handle for tasks much larger in the mobile view
+- 
+
+
 **This software is in maintenance mode**.
 It doesn't mean it's abandoned, but there is no significant feature development.
 Pull-requests are still accepted as long as the [guidelines](.github/pull_request_template.md) are followed.

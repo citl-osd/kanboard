@@ -1,6 +1,7 @@
 .task-board-sort-handle {
     float: left;
-    padding-right: 5px
+    padding-right: 5px;
+    font-size: 3em
 }
 
 .task-board {
