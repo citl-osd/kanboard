@@ -136,21 +136,20 @@
 
         <?= $this->hook->render('template:board:task:icons', array('task' => $task)) ?>
     </div>
-</div>
 
     <?php if (! empty($task['nb_subtasks'])):
     // prominent progress bar
     ?>
-    <div style="width: 100%; text-align: center;">
+    <div style="width: 100%; text-align: center; margin-bottom: 20px;">
     <style>
     progress#progress<?= $task["id"] ?>::-moz-progress-bar { background-color:<?=$task['color_id'] ?> ; }
         progress#progress<?=$task["id"] ?>::-webkit-progress-value { background-color: <?=$task['color_id']?>; }
         progress#progresss<?=$task["id"] ?> { color: <?=$task['color_id'] ?>; }
     </style>
-            <?= $this->app->tooltipLink('<progress id="progress' . $task["id"] . '" style="display: inline-block; width:85%;" max="100" value="' . round($task['nb_completed_subtasks'] / $task['nb_subtasks'] * 100, 0) . '"></progress><label for="progress'.$task["id"].'" style="display: inline-block; width: 10%">' . round($task['nb_completed_subtasks'] / $task['nb_subtasks'] * 100, 0) . '%</label>', $this->url->href('BoardTooltipController', 'subtasks', array('task_id' => $task['id'], 'project_id' => $task['project_id']))) ?>
+           <?= $this->app->tooltipLink('<progress id="progress' . $task["id"] . '" style="display: inline-block; width:85%;" max="100" value="' . round($task['nb_completed_subtasks'] / $task['nb_subtasks'] * 100, 0) . '"></progress><label for="progress'.$task["id"].'" style="display: inline-block; width: 10%">' . round($task['nb_completed_subtasks'] / $task['nb_subtasks'] * 100, 0) . '%</label>', $this->url->href('BoardTooltipController', 'subtasks', array('task_id' => $task['id'], 'project_id' => $task['project_id']))) ?>
     </div>
     <?php endif ?>
-
+</div>
 
 
 
